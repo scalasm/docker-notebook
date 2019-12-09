@@ -1,4 +1,10 @@
-# Using .dockerignore
+# Optimize your images
+
+But make them work first!
+
+<!-- TOC -->autoauto- [Optimize your images](#optimize-your-images)auto    - [Using .dockerignore](#using-dockerignore)auto    - [Shrink images](#shrink-images)autoauto<!-- /TOC -->
+
+## Using .dockerignore
 
 Edit your *.dockerignore* in order to make **ADD**/**COPY** instructions to skip including the given files/folders from the
 final image.
@@ -30,7 +36,9 @@ Another example is
 !Dockerfile
 ```
 
-# Remove dev dependencies in the image build steps
+## Shrink images
+
+Remove dev dependencies in the image build steps: everything that is not used at runtime.
 
 Change the Dockerfile to perform additional stuff in order to remove unused or temporary dependencies.
 

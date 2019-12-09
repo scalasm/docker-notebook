@@ -1,5 +1,9 @@
+# Networking
 
-# Show networks
+<!-- TOC depthFrom:2 -->autoauto- [Networking](#networking)auto    - [Show networks](#show-networks)auto    - [Create a network](#create-a-network)auto    - [Starting other containers](#starting-other-containers)auto    - [Poking with Redis](#poking-with-redis)auto    - [Named volumes](#named-volumes)auto    - [Executing commands and go away](#executing-commands-and-go-away)autoauto<!-- /TOC -->
+
+
+## Show networks
 ```
 docker network ls
 
@@ -15,13 +19,13 @@ The *bridge* network is the default network: if we don't specify anything else t
 docker network inspect bridge
 ```
 
-# Create a network
+## Create a network
 ```
 docker network create --driver bridge firstnetwork
 ```
 Note: the *bridge* drivers if only for single host: if you want to connect containers spawning several hosts, then use *overlay*.
 
-# Starting other containers
+## Starting other containers
 
 ```
 docker pull redis:3.2-alpine
@@ -30,7 +34,7 @@ docker container run --rm -itd -p 6379:6379 --name redis --net firstnetwork redi
 docker container run -it --rm --name web2 -p 5001:5000 -e FLASK_APP=app.py -e FLASK_DEBUG=1 -d --net firstnetwork -v $(readlink -f $PWD):/app web2:latest
 ```
 
-# Poking with Redis
+## Poking with Redis
 ```
 PS C:\Users\mario\Dropbox\acloudguru\docker-fundamentals> docker exec -it redis redis-cli
 127.0.0.1:6379> KEYS *
@@ -39,7 +43,7 @@ PS C:\Users\mario\Dropbox\acloudguru\docker-fundamentals> docker exec -it redis 
 (integer) 100005
 ```
 
-# Named volumes
+## Named volumes
 ```
 docker volume create web2_redis
 ```
@@ -64,7 +68,7 @@ To force Redis to persist data on disk:
 docker exec -it redis redis-cli
 ```
 
-# Executing commands and go away 
+## Executing commands and go away 
 
 Dump the /etc/hosts files
 ```

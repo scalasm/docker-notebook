@@ -1,25 +1,31 @@
-# warning: in this document the term “image-name” is used instead of “repository-name” 
+# Scrapbook
 
-# Build
+The almost-always useful stuff!
 
-## Create a docker image tagged ‘web1’
+**Warning**: in this document the term “image-name” is used instead of “repository-name” 
+
+<!-- TOC -->autoauto- [Scrapbook](#scrapbook)auto    - [Build](#build)auto        - [Create a docker image tagged ‘web1’](#create-a-docker-image-tagged-web1)auto        - [Show metadata about the image](#show-metadata-about-the-image)auto        - [Show the docker images available locally](#show-the-docker-images-available-locally)auto        - [Remove and image from cache](#remove-and-image-from-cache)auto    - [Publishing an image to a remote registry (e.g., Docker Hub)](#publishing-an-image-to-a-remote-registry-eg-docker-hub)auto    - [Renaming / Retagging an image](#renaming--retagging-an-image)auto    - [Run a container](#run-a-container)auto        - [Starting](#starting)auto        - [Mounting external volumes](#mounting-external-volumes)auto    - [Run multiple containers](#run-multiple-containers)auto    - [Stopping](#stopping)auto    - [Monitoring container logs and stats](#monitoring-container-logs-and-stats)auto    - [Logging into a container and inspecting the FS](#logging-into-a-container-and-inspecting-the-fs)auto    - [Running custom scripts](#running-custom-scripts)auto    - [Docker clean up and troubleshooting](#docker-clean-up-and-troubleshooting)auto        - [Cleaning up dangling stuff and more](#cleaning-up-dangling-stuff-and-more)auto    - [Report your system configuration](#report-your-system-configuration)auto    - [Stopping all running containers at once](#stopping-all-running-containers-at-once)autoauto<!-- /TOC -->
+
+## Build
+
+### Create a docker image tagged ‘web1’
 docker image build -t <image-name>:<image-tag> .
 
 docker image build -t web1:1.0 .
 
-## Show metadata about the image
+### Show metadata about the image
 docker image inspect web1
 
-## Show the docker images available locally
+### Show the docker images available locally
 docker image ls
 
-## Remove and image from cache
+### Remove and image from cache
 
 Method #1 - Delete by repository name and tag: docker image rm <image-name>:<image-tag>
 Method #2 - Delete by image id: docker image rm <image-id-first-4-digits>
 
 docker image rm web1:1.0
-# '-f' 
+* '-f' forces the image removal, even if it is not dangling (unused) 
 docker image rm -f 29a4
 
 ```
@@ -29,7 +35,8 @@ web1                latest              29a488fd263e        2 minutes ago       
 marioscalas/web1    latest              29a488fd263e        2 minutes ago       73.1MB
 ```
 
-# Publishing an image to a remote registry (e.g., Docker Hub)
+
+## Publishing an image to a remote registry (e.g., Docker Hub)
 Log into repository:
 ```
 docker login
@@ -51,16 +58,16 @@ docker image rm marioscalas/web1:latest
 docker image pull marioscalas/web1:latest
 ```
 
-# Renaming / Retagging an image
+## Renaming / Retagging an image
 Use *docker tag* to create a new tag for the image and remove the unwanted one:
 ```
 docker image tag marioscalas/web1:latest web1:latest
 docker image rm marioscalas/web1:latest
 ```
 
-# Run a container
+## Run a container
 
-## Starting
+### Starting
 ```
 docker container ls
 docker container ls -a
@@ -82,7 +89,7 @@ Super smart:
 docker container run -it --rm --name web1 -p 5000:5000 -e FLASK_APP=app.py -e FLASK_DEBUG=1 -d web1:latest 
 ```
 
-## Mounting external volumes
+### Mounting external volumes
 Use the *-v <LOCAL-PATH:CONTAINER-PATH>*
 
 Note: it doesn't seem to like the symlink paths so I've to resort to (this)[https://stackoverflow.com/a/46750124/522427].
@@ -108,18 +115,18 @@ Note: stopped container are not cleaned up so we have either to do this manually
 docker container stop beautiful_heyrovsky
 ```
 
-# Monitoring container logs and stats
+## Monitoring container logs and stats
 ```
 docker container logs -f web1
 docker container stats
 docker container inspect <CONTAINER-NAME-OR-ID>
 ```
 
-# Logging into a container and inspecting the FS
+## Logging into a container and inspecting the FS
 
 docker container exec -it web1 sh
 
-# Running custom scripts
+## Running custom scripts
 
 You create a script (e.g. *docker-entrypoint.sh*) and then you add into your *Dockerfile* something like the following. 
 
@@ -155,7 +162,7 @@ docker container run -it --rm --name webscripted -p 5001:5000 -e FLASK_APP=app.p
 
 In this way we can set defaults in the script and override them with command line (e.g., perform database migrations).
 
-# Docker clean up and troubleshooting
+## Docker clean up and troubleshooting
 
 How much space are we consuming with our images?
 ```
@@ -172,7 +179,7 @@ This also dumps volumes and other things:
 docker system df -v
 ```
 
-## Cleaning up dangling stuff and more
+### Cleaning up dangling stuff and more
 
 Every image with *<none>* is safe to delete
 ```
