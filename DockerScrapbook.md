@@ -2,7 +2,9 @@
 
 The almost-always useful stuff!
 
-**W<!-- TOC -->autoauto- [Scrapbook](#scrapbook)auto    - [Build](#build)auto        - [Create a docker image tagged ‘web1’](#create-a-docker-image-tagged-web1)auto        - [Show metadata about the image](#show-metadata-about-the-image)auto        - [Show the docker images available locally](#show-the-docker-images-available-locally)auto        - [Remove and image from cache](#remove-and-image-from-cache)auto    - [Publishing an image to a remote registry (e.g., Docker Hub)](#publishing-an-image-to-a-remote-registry-eg-docker-hub)auto    - [Renaming / Retagging an image](#renaming--retagging-an-image)auto    - [Run a container](#run-a-container)auto        - [Starting](#starting)auto        - [Mounting external volumes](#mounting-external-volumes)auto    - [Run multiple containers](#run-multiple-containers)auto    - [Stopping](#stopping)auto    - [Monitoring container logs and stats](#monitoring-container-logs-and-stats)auto    - [Logging into a container and inspecting the FS](#logging-into-a-container-and-inspecting-the-fs)auto    - [Running custom scripts](#running-custom-scripts)auto    - [Docker clean up and troubleshooting](#docker-clean-up-and-troubleshooting)auto        - [Cleaning up dangling stuff and more](#cleaning-up-dangling-stuff-and-more)auto    - [Report your system configuration](#report-your-system-configuration)auto    - [Stopping all running containers at once](#stopping-all-running-containers-at-once)autoauto<!-- /TOC -->arning**: in this document the term “image-name” is used instead of “repository-name” 
+**Warning**: in this document the term “image-name” is used instead of “repository-name” 
+
+<!-- TOC -->autoauto- [Scrapbook](#scrapbook)auto    - [Build](#build)auto        - [Create a docker image tagged ‘web1’](#create-a-docker-image-tagged-web1)auto        - [Show metadata about the image](#show-metadata-about-the-image)auto        - [Show the docker images available locally](#show-the-docker-images-available-locally)auto        - [Remove and image from cache](#remove-and-image-from-cache)auto    - [Publishing an image to a remote registry (e.g., Docker Hub)](#publishing-an-image-to-a-remote-registry-eg-docker-hub)auto    - [Renaming / Retagging an image](#renaming--retagging-an-image)auto    - [Run a container](#run-a-container)auto        - [Starting](#starting)auto        - [Mounting external volumes](#mounting-external-volumes)auto    - [Run multiple containers](#run-multiple-containers)auto    - [Stopping](#stopping)auto    - [Monitoring container logs and stats](#monitoring-container-logs-and-stats)auto    - [Logging into a container and inspecting the FS](#logging-into-a-container-and-inspecting-the-fs)auto    - [Running custom scripts](#running-custom-scripts)auto    - [Docker clean up and troubleshooting](#docker-clean-up-and-troubleshooting)auto        - [Cleaning up dangling stuff and more](#cleaning-up-dangling-stuff-and-more)auto    - [Report your system configuration](#report-your-system-configuration)auto    - [Stopping all running containers at once](#stopping-all-running-containers-at-once)autoauto<!-- /TOC -->
 
 ## Build
 
@@ -24,8 +26,9 @@ docker image ls
 ```
 ### Remove and image from cache
 
-**Method #1 - Delete by repository name and tag**: ``docker image rm <image-name>:<image-tag>``
-**Method #2 - Delete by image id**: ``docker image rm <image-id-first-4-digits>``
+You can do in two ways:
+1. **Delete by repository name and tag**: ``docker image rm <image-name>:<image-tag>``
+2. **Delete by image id**: ``docker image rm <image-id-first-4-digits>``
 
 ```
 docker image rm web1:1.0
@@ -96,7 +99,7 @@ docker container run -it --rm --name web1 -p 5000:5000 -e FLASK_APP=app.py -e FL
 ### Mounting external volumes
 Use the *-v <LOCAL-PATH:CONTAINER-PATH>*
 
-Note: it doesn't seem to like the symlink paths so I've to resort to (this)[https://stackoverflow.com/a/46750124/522427].
+Note: it doesn't seem to like the symlink paths so I've to resort to [this](https://stackoverflow.com/a/46750124/522427]).
 ```
 docker container run -it --rm --name web1 -p 5000:5000 -e FLASK_APP=app.py -e FLASK_DEBUG=1 -d  -v $(readlink -f $PWD):/app web1:latest
 ```
