@@ -2,39 +2,43 @@
 
 The almost-always useful stuff!
 
-**Warning**: in this document the term “image-name” is used instead of “repository-name” 
-
-<!-- TOC -->autoauto- [Scrapbook](#scrapbook)auto    - [Build](#build)auto        - [Create a docker image tagged ‘web1’](#create-a-docker-image-tagged-web1)auto        - [Show metadata about the image](#show-metadata-about-the-image)auto        - [Show the docker images available locally](#show-the-docker-images-available-locally)auto        - [Remove and image from cache](#remove-and-image-from-cache)auto    - [Publishing an image to a remote registry (e.g., Docker Hub)](#publishing-an-image-to-a-remote-registry-eg-docker-hub)auto    - [Renaming / Retagging an image](#renaming--retagging-an-image)auto    - [Run a container](#run-a-container)auto        - [Starting](#starting)auto        - [Mounting external volumes](#mounting-external-volumes)auto    - [Run multiple containers](#run-multiple-containers)auto    - [Stopping](#stopping)auto    - [Monitoring container logs and stats](#monitoring-container-logs-and-stats)auto    - [Logging into a container and inspecting the FS](#logging-into-a-container-and-inspecting-the-fs)auto    - [Running custom scripts](#running-custom-scripts)auto    - [Docker clean up and troubleshooting](#docker-clean-up-and-troubleshooting)auto        - [Cleaning up dangling stuff and more](#cleaning-up-dangling-stuff-and-more)auto    - [Report your system configuration](#report-your-system-configuration)auto    - [Stopping all running containers at once](#stopping-all-running-containers-at-once)autoauto<!-- /TOC -->
+**W<!-- TOC -->autoauto- [Scrapbook](#scrapbook)auto    - [Build](#build)auto        - [Create a docker image tagged ‘web1’](#create-a-docker-image-tagged-web1)auto        - [Show metadata about the image](#show-metadata-about-the-image)auto        - [Show the docker images available locally](#show-the-docker-images-available-locally)auto        - [Remove and image from cache](#remove-and-image-from-cache)auto    - [Publishing an image to a remote registry (e.g., Docker Hub)](#publishing-an-image-to-a-remote-registry-eg-docker-hub)auto    - [Renaming / Retagging an image](#renaming--retagging-an-image)auto    - [Run a container](#run-a-container)auto        - [Starting](#starting)auto        - [Mounting external volumes](#mounting-external-volumes)auto    - [Run multiple containers](#run-multiple-containers)auto    - [Stopping](#stopping)auto    - [Monitoring container logs and stats](#monitoring-container-logs-and-stats)auto    - [Logging into a container and inspecting the FS](#logging-into-a-container-and-inspecting-the-fs)auto    - [Running custom scripts](#running-custom-scripts)auto    - [Docker clean up and troubleshooting](#docker-clean-up-and-troubleshooting)auto        - [Cleaning up dangling stuff and more](#cleaning-up-dangling-stuff-and-more)auto    - [Report your system configuration](#report-your-system-configuration)auto    - [Stopping all running containers at once](#stopping-all-running-containers-at-once)autoauto<!-- /TOC -->arning**: in this document the term “image-name” is used instead of “repository-name” 
 
 ## Build
 
 ### Create a docker image tagged ‘web1’
+```
 docker image build -t <image-name>:<image-tag> .
-
+```
+Example:
+```
 docker image build -t web1:1.0 .
-
+```
 ### Show metadata about the image
+```
 docker image inspect web1
-
+```
 ### Show the docker images available locally
+```
 docker image ls
-
+```
 ### Remove and image from cache
 
-Method #1 - Delete by repository name and tag: docker image rm <image-name>:<image-tag>
-Method #2 - Delete by image id: docker image rm <image-id-first-4-digits>
-
-docker image rm web1:1.0
-* '-f' forces the image removal, even if it is not dangling (unused) 
-docker image rm -f 29a4
+**Method #1 - Delete by repository name and tag**: ``docker image rm <image-name>:<image-tag>``
+**Method #2 - Delete by image id**: ``docker image rm <image-id-first-4-digits>``
 
 ```
+docker image rm web1:1.0
+```
+* '-f' forces the image removal, even if it is not dangling (unused) 
+```
+docker image rm -f 29a4
+
 PS C:\src\docker-fundamentals\src\06-docker-in-the-real-world\03-creating-a-dockerfile-part-1> docker image ls
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 web1                latest              29a488fd263e        2 minutes ago       73.1MB
 marioscalas/web1    latest              29a488fd263e        2 minutes ago       73.1MB
 ```
-
 
 ## Publishing an image to a remote registry (e.g., Docker Hub)
 Log into repository:
