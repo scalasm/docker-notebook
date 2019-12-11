@@ -1,8 +1,5 @@
 # Networking
 
-<!-- TOC depthFrom:2 -->autoauto- [Networking](#networking)auto    - [Show networks](#show-networks)auto    - [Create a network](#create-a-network)auto    - [Starting other containers](#starting-other-containers)auto    - [Poking with Redis](#poking-with-redis)auto    - [Named volumes](#named-volumes)auto    - [Executing commands and go away](#executing-commands-and-go-away)autoauto<!-- /TOC -->
-
-
 ## Show networks
 ```
 docker network ls

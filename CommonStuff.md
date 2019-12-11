@@ -4,8 +4,6 @@ The almost-always useful stuff!
 
 **Warning**: in this document the term “image-name” is used instead of “repository-name” 
 
-<!-- TOC -->autoauto- [Scrapbook](#scrapbook)auto    - [Build](#build)auto        - [Create a docker image tagged ‘web1’](#create-a-docker-image-tagged-web1)auto        - [Show metadata about the image](#show-metadata-about-the-image)auto        - [Show the docker images available locally](#show-the-docker-images-available-locally)auto        - [Remove and image from cache](#remove-and-image-from-cache)auto    - [Publishing an image to a remote registry (e.g., Docker Hub)](#publishing-an-image-to-a-remote-registry-eg-docker-hub)auto    - [Renaming / Retagging an image](#renaming--retagging-an-image)auto    - [Run a container](#run-a-container)auto        - [Starting](#starting)auto        - [Mounting external volumes](#mounting-external-volumes)auto    - [Run multiple containers](#run-multiple-containers)auto    - [Stopping](#stopping)auto    - [Monitoring container logs and stats](#monitoring-container-logs-and-stats)auto    - [Logging into a container and inspecting the FS](#logging-into-a-container-and-inspecting-the-fs)auto    - [Running custom scripts](#running-custom-scripts)auto    - [Docker clean up and troubleshooting](#docker-clean-up-and-troubleshooting)auto        - [Cleaning up dangling stuff and more](#cleaning-up-dangling-stuff-and-more)auto    - [Report your system configuration](#report-your-system-configuration)auto    - [Stopping all running containers at once](#stopping-all-running-containers-at-once)autoauto<!-- /TOC -->
-
 ## Build
 
 ### Create a docker image tagged ‘web1’
@@ -68,7 +66,9 @@ docker image pull marioscalas/web1:latest
 ## Renaming / Retagging an image
 Use *docker tag* to create a new tag for the image and remove the unwanted one:
 ```
-docker image tag marioscalas/web1:latest web1:latest
+docker image tag <FROM_TAG:VERSION> <TO_TAG:VERSION>
+
+docker image tag web1:latest marioscalas/web1:latest
 docker image rm marioscalas/web1:latest
 ```
 

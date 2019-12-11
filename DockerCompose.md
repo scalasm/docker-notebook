@@ -2,8 +2,6 @@
 
 Simplify container-based applications by writing your *docker-compose.yml* and then ... get your multi-container application up and running.
 
-<!-- TOC -->autoauto- [Using Docker Compose](#using-docker-compose)auto    - [Tips](#tips)auto    - [When in doubt](#when-in-doubt)auto    - [Sample docker-compose.yml](#sample-docker-composeyml)auto    - [Build](#build)auto    - [Run](#run)auto    - [Build/Pull and run in a single step](#buildpull-and-run-in-a-single-step)auto    - [Execute commands on containers](#execute-commands-on-containers)autoauto<!-- /TOC -->
-
 ## Tips
 
 In your env file set the **DOCKER_PROJECT_NAME** explicitly to avoid "mess":

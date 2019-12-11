@@ -2,8 +2,6 @@
 
 But make them work first!
 
-<!-- TOC -->autoauto- [Optimize your images](#optimize-your-images)auto    - [Using .dockerignore](#using-dockerignore)auto    - [Shrink images](#shrink-images)autoauto<!-- /TOC -->
-
 ## Using .dockerignore
 
 Edit your *.dockerignore* in order to make **ADD**/**COPY** instructions to skip including the given files/folders from the

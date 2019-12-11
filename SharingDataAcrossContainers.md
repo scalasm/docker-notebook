@@ -1,7 +1,5 @@
 # Sharing directories from other containers
 
-<!-- TOC depthFrom:2 -->autoauto- [Sharing directories from other containers](#sharing-directories-from-other-containers)auto    - [Exporting container](#exporting-container)auto    - [Importing container](#importing-container)autoauto<!-- /TOC -->
-
 You use volumes.
 
 ## Exporting container
