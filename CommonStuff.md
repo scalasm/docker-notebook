@@ -130,9 +130,9 @@ docker container inspect <CONTAINER-NAME-OR-ID>
 ```
 
 ## Logging into a container and inspecting the FS
-
+```
 docker container exec -it web1 sh
-
+```
 ## Running custom scripts
 
 You create a script (e.g. *docker-entrypoint.sh*) and then you add into your *Dockerfile* something like the following. 
