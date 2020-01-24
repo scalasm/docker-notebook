@@ -1,0 +1,17 @@
+{
+  "containerDefinitions": [
+    {
+      "name": "nginx",
+      "image": "015589054601.dkr.ecr.eu-central-1.amazonaws.com/deepdive/nginx:1.17.8",
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "hostPort": 80
+        }
+      ],
+      "memory": 50,
+      "cpu": 102
+    }
+  ],
+  "family": "web"
+}
