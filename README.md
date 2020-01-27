@@ -24,6 +24,7 @@ This is a collection of random notes about docker and container orchestration. A
   * [Networking](docker/Networking.md)
   * [Volumes and sharing data across containers](docker/SharingDataAcrossContainers.md)
   * [Hits for debugging failed image builds](docker/DebuggingDockerBuildFailures.md)
+  * [Profiling your container](docker/ProfilingYourContainer.md)
 * [Orchestrating containers with AWS ECS](scaling-docker-on-aws/README.md) - this is a collection of snippets that uses the "Scaling Docker Containers Course" as basic example but its snippets are re-usable elsewhere too!
   * [Task Definitions](scaling-docker-on-aws/TaskDefinitionCommands.md)
   * [Runnig/starting Tasks](scaling-docker-on-aws/TaskCommands.md) - need to start / run / stop / describe tasks?
